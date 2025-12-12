@@ -14,9 +14,19 @@ Route::get('/', [\App\Http\Controllers\BookingController::class, 'index'])->name
 Route::get('/check-slots', [\App\Http\Controllers\BookingController::class, 'checkSlots'])->name('booking.check');
 Route::post('/booking', [\App\Http\Controllers\BookingController::class, 'store'])->name('booking.store');
 
-// Admin Routes
-Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
-Route::put('/admin/booking/{id}', [\App\Http\Controllers\AdminController::class, 'updateStatus'])->name('admin.booking.update');
+// Admin Auth Routes
+Route::get('/admin/login', [\App\Http\Controllers\AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [\App\Http\Controllers\AdminAuthController::class, 'login'])->name('admin.login.submit');
+Route::post('/admin/logout', [\App\Http\Controllers\AdminAuthController::class, 'logout'])->name('admin.logout');
+Route::post('/logout', [\App\Http\Controllers\AdminAuthController::class, 'logout'])->name('logout');
+Route::get('/login', function () {
+  return redirect()->route('admin.login'); })->name('login');
+
+// Admin Routes (Protected)
+Route::middleware(['auth'])->group(function () {
+  Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+  Route::put('/admin/booking/{id}', [\App\Http\Controllers\AdminController::class, 'updateStatus'])->name('admin.booking.update');
+});
 
 // Original Routes (keeping safe)
 // Route::get('/', [HomePage::class, 'index'])->name('pages-home');
