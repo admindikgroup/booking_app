@@ -7,10 +7,10 @@
       "slug": "pages-home"
     },
     {
-      "url": "/page-2",
-      "icon": "menu-icon icon-base ti tabler-file",
-      "name": "Page 2",
-      "slug": "pages-page-2"
+      "url": "/admin/custom-booking",
+      "icon": "menu-icon icon-base ti tabler-clock",
+      "name": "Custom Booking",
+      "slug": "booking-settings-index"
     },
     {
       "url": "/pages/misc-error",

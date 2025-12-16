@@ -20,7 +20,8 @@ Route::post('/admin/login', [\App\Http\Controllers\AdminAuthController::class, '
 Route::post('/admin/logout', [\App\Http\Controllers\AdminAuthController::class, 'logout'])->name('admin.logout');
 Route::post('/logout', [\App\Http\Controllers\AdminAuthController::class, 'logout'])->name('logout');
 Route::get('/login', function () {
-  return redirect()->route('admin.login'); })->name('login');
+  return redirect()->route('admin.login');
+})->name('login');
 
 // Admin Routes (Protected)
 Route::middleware(['auth'])->group(function () {
@@ -30,7 +31,12 @@ Route::middleware(['auth'])->group(function () {
 
 // Original Routes (keeping safe)
 // Route::get('/', [HomePage::class, 'index'])->name('pages-home');
-Route::get('/page-2', [Page2::class, 'index'])->name('pages-page-2');
+// Route::get('/', [HomePage::class, 'index'])->name('pages-home');
+// Route::get('/page-2', [Page2::class, 'index'])->name('pages-page-2'); // Removed
+Route::middleware(['auth'])->group(function () {
+  Route::get('/admin/custom-booking', [\App\Http\Controllers\BookingSettingsController::class, 'index'])->name('booking-settings.index');
+  Route::post('/admin/custom-booking', [\App\Http\Controllers\BookingSettingsController::class, 'update'])->name('booking-settings.update');
+});
 
 // locale
 Route::get('/lang/{locale}', [LanguageController::class, 'swap']);
