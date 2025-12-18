@@ -33,14 +33,14 @@ $customizerHidden = 'customizer-hide';
         <div class="card-body">
           <!-- Logo -->
           <div class="app-brand justify-content-center mb-6">
-            <a href="{{ url('/') }}" class="app-brand-link">
+            <a href="{{ url('/admin/login') }}" class="app-brand-link">
               <span class="app-brand-logo demo">@include('_partials.macros')</span>
               <span class="app-brand-text demo text-heading fw-bold">{{ config('variables.templateName') }}</span>
             </a>
           </div>
           <!-- /Logo -->
           <h4 class="mb-1">Welcome to Admin Panel! 👋</h4>
-          <p class="mb-6">Please sign-in to your account and start the adventure</p>
+          <p class="mb-6">Please sign-in to your account</p>
 
           <form id="formAuthentication" class="mb-4" action="{{ route('admin.login.submit') }}" method="POST">
             @csrf

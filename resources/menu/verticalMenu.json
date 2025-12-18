@@ -1,8 +1,8 @@
 {
   "menu": [
     {
-      "url": "/",
-      "name": "Home",
+      "url": "/admin",
+      "name": "Dashboard Booking",
       "icon": "menu-icon icon-base ti tabler-smart-home",
       "slug": "pages-home"
     },
@@ -11,27 +11,6 @@
       "icon": "menu-icon icon-base ti tabler-clock",
       "name": "Custom Booking",
       "slug": "booking-settings-index"
-    },
-    {
-      "url": "/pages/misc-error",
-      "name": "Error",
-      "icon": "menu-icon icon-base ti tabler-alert-triangle",
-      "slug": "pages-misc-error",
-      "target": "_blank"
-    },
-    {
-      "url": "/auth/login-basic",
-      "name": "Login",
-      "icon": "menu-icon icon-base ti tabler-login",
-      "slug": "auth-login-basic",
-      "target": "_blank"
-    },
-    {
-      "url": "/auth/register-basic",
-      "name": "Register",
-      "icon": "menu-icon icon-base ti tabler-user",
-      "slug": "auth-register-basic",
-      "target": "_blank"
     }
   ]
 }

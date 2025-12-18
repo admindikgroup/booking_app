@@ -99,27 +99,27 @@
         </li>
         <li>
           <div class="dropdown-divider my-1 mx-n2"></div>
-        </li>
+          <!-- </li>
         <li>
           <a class="dropdown-item"
             href="{{ Route::has('profile.show') ? route('profile.show') : 'javascript:void(0);' }}">
             <i class="icon-base ti tabler-user me-3 icon-md"></i><span class="align-middle">My Profile</span> </a>
-        </li>
-        {{-- @if (Auth::check() && Laravel\Jetstream\Jetstream::hasApiFeatures())
+        </li> -->
+          {{-- @if (Auth::check() && Laravel\Jetstream\Jetstream::hasApiFeatures())
         <li>
           <a class="dropdown-item" href="{{ route('api-tokens.index') }}">
             <i class="icon-base ti tabler-settings me-3 icon-md"></i><span class="align-middle">API Tokens</span> </a>
         </li>
         @endif --}}
-        <li>
+        <!-- <li>
           <a class="dropdown-item" href="javascript:void(0);">
             <span class="d-flex align-items-center align-middle">
               <i class="flex-shrink-0 icon-base ti tabler-file-dollar me-3 icon-md"></i><span
-                class="flex-grow-1 align-middle">Billing</span>
+                class="flex-grow-1 align-middle">Billing </span>
               <span class="flex-shrink-0 badge bg-danger d-flex align-items-center justify-content-center">4</span>
             </span>
           </a>
-        </li>
+        </li> -->
         {{-- @if (Auth::User() && Laravel\Jetstream\Jetstream::hasTeamFeatures()) --}}
         {{-- Jetstream Team Features Removed --}}
         {{-- @endif --}}
