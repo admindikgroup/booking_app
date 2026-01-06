@@ -39,4 +39,19 @@ class AdminController extends Controller
 
         return back()->with('success', 'Booking status updated!');
     }
+
+    public function search(Request $request)
+    {
+        $bookings = \App\Models\Booking::where('name', 'like', '%' . $request->search . '%')
+            ->orWhere('email', 'like', '%' . $request->search . '%')
+            ->orWhere('phone', 'like', '%' . $request->search . '%')
+            ->orWhere('booking_date', 'like', '%' . $request->search . '%')
+            ->orWhere('start_time', 'like', '%' . $request->search . '%')
+            ->orWhere('end_time', 'like', '%' . $request->search . '%')
+            ->orWhere('status', 'like', '%' . $request->search . '%')
+            ->latest()
+            ->get();
+
+        return view('admin.index', compact('bookings'));
+    }
 }

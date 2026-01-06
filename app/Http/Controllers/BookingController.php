@@ -80,15 +80,28 @@ class BookingController extends Controller
 
         // Double check availability (race condition check skipped for simplicity)
 
+        // Check Auto-Approve Setting
+        $autoApprove = \App\Models\BookingSetting::where('key', 'auto_approve')->value('value');
+        $status = ($autoApprove == '1') ? 'approved' : 'pending';
+
         $booking = \App\Models\Booking::create(array_merge($validated, [
-            'status' => 'pending'
+            'status' => $status
         ]));
 
         // Send Email Notification
+
+        // Notify Admin (ignoring error for now as admin@example.com fails on real SMTP)
         try {
-            \Illuminate\Support\Facades\Mail::to('admin@example.com')->send(new \App\Mail\NewBookingNotification($booking));
+            // \Illuminate\Support\Facades\Mail::to('admin@example.com')->send(new \App\Mail\NewBookingNotification($booking));
         } catch (\Exception $e) {
-            \Illuminate\Support\Facades\Log::error('Mail Error: ' . $e->getMessage());
+            \Illuminate\Support\Facades\Log::error('Admin Mail Error: ' . $e->getMessage());
+        }
+
+        // Notify User
+        try {
+            \Illuminate\Support\Facades\Mail::to($booking->email)->send(new \App\Mail\BookingReceived($booking));
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('User Mail Error: ' . $e->getMessage());
         }
 
         return response()->json(['success' => true, 'message' => 'Booking submitted successfully!']);

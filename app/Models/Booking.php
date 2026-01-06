@@ -15,5 +15,7 @@ class Booking extends Model
         'start_time',
         'end_time',
         'status',
+        'otp_code',
+        'otp_expires_at',
     ];
 }

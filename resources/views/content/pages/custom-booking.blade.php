@@ -40,8 +40,24 @@
             </select>
           </div>
         </div>
-        <div class="row justify-content-end">
+        
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="auto_approve">Auto Approve</label>
+
           <div class="col-sm-10">
+            <div class="form-check form-switch mt-2">
+              <input class="form-check-input" type="checkbox" id="auto_approve" name="auto_approve" value="1"
+                {{ ($settings['auto_approve'] ?? '0') == '1' ? 'checked' : '' }}>
+              <label class="form-check-label" for="auto_approve">
+                Automatically approve available bookings
+              </label>
+            </div>
+          </div>
+
+
+        
+        <div class="row">
+          <div class="col-sm-10 offset-sm-2 mt-2">
             <button type="submit" class="btn btn-primary">Save Settings</button>
           </div>
         </div>

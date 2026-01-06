@@ -19,6 +19,20 @@ Route::get('/admin/login', [\App\Http\Controllers\AdminAuthController::class, 's
 Route::post('/admin/login', [\App\Http\Controllers\AdminAuthController::class, 'login'])->name('admin.login.submit');
 Route::post('/admin/logout', [\App\Http\Controllers\AdminAuthController::class, 'logout'])->name('admin.logout');
 Route::post('/logout', [\App\Http\Controllers\AdminAuthController::class, 'logout'])->name('logout');
+
+Route::get('/my-booking', [\App\Http\Controllers\BookingAuthController::class, 'loginForm'])->name('booking.login');
+Route::post('/my-booking/send-otp', [\App\Http\Controllers\BookingAuthController::class, 'sendOtp'])->name('booking.send-otp');
+Route::get('/my-booking/verify', [\App\Http\Controllers\BookingAuthController::class, 'verifyForm'])->name('booking.verify');
+Route::post('/my-booking/verify', [\App\Http\Controllers\BookingAuthController::class, 'verifyOtp'])->name('booking.verify-otp');
+Route::get('/my-booking/dashboard', [\App\Http\Controllers\BookingAuthController::class, 'dashboard'])->name('booking.dashboard');
+Route::post('/my-booking/logout', [\App\Http\Controllers\BookingAuthController::class, 'logout'])->name('booking.logout');
+
+Route::get('/test-email', function (\Illuminate\Http\Request $request) {
+  $recipient = $request->query('email', 'booking@terraform.id');
+  \Illuminate\Support\Facades\Mail::to($recipient)->send(new \App\Mail\TestMail());
+  return 'Email sent to ' . $recipient;
+});
+
 Route::get('/login', function () {
   return redirect()->route('admin.login');
 })->name('login');
@@ -27,6 +41,7 @@ Route::get('/login', function () {
 Route::middleware(['auth'])->group(function () {
   Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
   Route::put('/admin/booking/{id}', [\App\Http\Controllers\AdminController::class, 'updateStatus'])->name('admin.booking.update');
+  Route::get('/admin/search', [\App\Http\Controllers\AdminController::class, 'search'])->name('admin.search');
 });
 
 // Original Routes (keeping safe)

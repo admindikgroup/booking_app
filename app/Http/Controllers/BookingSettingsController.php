@@ -19,7 +19,11 @@ class BookingSettingsController extends Controller
       'open_time' => 'required',
       'close_time' => 'required',
       'slot_duration_minutes' => 'required|integer',
+      'auto_approve' => 'nullable',
     ]);
+
+    // Checkbox doesn't send value if unchecked, so we default to 0
+    $data['auto_approve'] = $request->has('auto_approve') ? '1' : '0';
 
     foreach ($data as $key => $value) {
       BookingSetting::updateOrCreate(

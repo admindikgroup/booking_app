@@ -5,6 +5,9 @@
 @section('content')
   <div class="container-xxl container-p-y">
     <div class="row justify-content-center">
+      <div class="col-12 text-end mb-3">
+        <a href="{{ route('booking.login') }}" class="btn btn-outline-primary">My Booking</a>
+      </div>
       <div class="col-md-8">
         <div class="card mb-4">
           <h5 class="card-header">Reservation</h5>

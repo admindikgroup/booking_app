@@ -7,7 +7,22 @@
     <div class="d-flex justify-content-between align-items-center card-header">
       <h5 class="m-0">Bookings</h5>
       <div>
-        <!-- Future: Export/Filter buttons -->
+        <!-- Search Form -->
+        <form action="{{ route('admin.search') }}" method="GET" class="d-flex gap-2 align-items-center">
+          <div class="position-relative">
+            <input type="text" name="search" class="form-control pe-5" placeholder="Search bookings..."
+              value="{{ request('search') }}">
+
+            @if(request('search'))
+              <a href="{{ route('admin.search') }}"
+                class="btn btn-sm btn-light position-absolute top-50 end-0 translate-middle-y me-1" title="Reset search"
+                style="border: none;">
+                &times;
+              </a>
+            @endif
+          </div>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
       </div>
     </div>
     <div class="table-responsive text-nowrap">
